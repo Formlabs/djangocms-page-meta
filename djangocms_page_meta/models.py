@@ -73,6 +73,9 @@ class PageMeta(PageExtension):
                                   help_text=_(u'Use Article for generic pages.'))
 
     def copy_relations(self, oldinstance, language):
+    # clear old tags
+        for tag in self.tags.all():
+            tag.delete()
         for tag in oldinstance.tags.all():
             # instance.pk = None; instance.pk.save() is the slightly odd but
             # standard Django way of copying a saved model instance
