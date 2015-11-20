@@ -40,7 +40,10 @@ def get_page_meta(page, language):
     meta = cache.get(meta_key)
     if not meta and page is not None:
         meta = Meta()
-        title = page.get_title_obj(language)
+        try:
+            title = page.get_title_obj(language)
+        except AttributeError:
+            return None
 
         meta.title = page.get_page_title(language)
         if not meta.title:
