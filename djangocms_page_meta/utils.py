@@ -38,7 +38,7 @@ def get_page_meta(page, language):
     except AttributeError:
         return None
     meta = cache.get(meta_key)
-    if not meta:
+    if not meta and page is not None:
         meta = Meta()
         title = page.get_title_obj(language)
 
